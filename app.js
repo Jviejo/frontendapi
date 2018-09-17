@@ -55,7 +55,7 @@ app.post('/upload', multer(multerConfig).single('file'), function (req, res) {
     res.send({file: req.file});
 });
 
-app.post('/uploadMultiple', multer(multerConfig).array('file[]',12), function (req, res) {
+app.post('/uploadMultiple', multer(multerConfig).array('file',12), function (req, res) {
     res.send({file: req.files});
 });
 

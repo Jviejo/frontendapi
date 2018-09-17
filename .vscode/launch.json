@@ -6,9 +6,11 @@
     "configurations": [
         {
             "type": "node",
-            "request": "launch",
-            "name": "Launch Program",
-            "program": "${workspaceFolder}\\index.js"
-        }
+            "request": "attach",
+            "name": "Attach fronend",
+            "port": 9999,
+            "protocol": "auto"
+        },
+        
     ]
 }
