@@ -1,0 +1,21 @@
+app: frontend
+company: nextagilesoft
+
+config: {}
+
+dependencies: {}
+
+handlers:
+  ui:
+    file: Dockerfile
+    url: /
+    liveness: /
+
+environments:
+  - name: prod
+    domain: frontend-api.nextagilesoft.com
+    repository: git@gitlab-ssh.nextagilesoft.com:jviejo/frontendapi.git:jviejo/frontend.git#master
+    type: Kubernetes
+    cluster: animal
+    config: {}
+    env_variables: []
