@@ -2,7 +2,8 @@ var express = require('express');
 var cors = require('cors');
 const axios = require('axios');
 const multer = require('multer');
-
+const fs = require("fs");
+const path = require("path")
 var map = require('rxjs/operators').map;
 var { of, from, interval, timer, concat } = require('rxjs');
 var range = require('rxjs').range;
@@ -52,13 +53,19 @@ const multerConfig = {
 app.use(cors())
 
 app.post('/upload', multer(multerConfig).single('file'), function (req, res) {
-    res.send({file: req.file});
+    res.send({ file: req.file });
 });
 
-app.post('/uploadMultiple', multer(multerConfig).array('file',12), function (req, res) {
-    res.send({file: req.files});
+app.post('/uploadMultiple', multer(multerConfig).array('file', 12), function (req, res) {
+    res.send({ file: req.files });
 });
 
+app.get('/loadData/:filename', function (req, res) {
+    const absFilename = path.join(__dirname, "storage", req.params.filename);
+    fs.createReadStream(absFilename).pipe(res);
+    console.log(absFilename)
+    
+});
 app.get('/:time', async function (req, res) {
     res.append("X-CUSTOM", "AAA")
     res.append('Warning', '199 Miscellaneous warning');
