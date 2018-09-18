@@ -66,6 +66,12 @@ app.get('/loadData/:filename', function (req, res) {
     console.log(absFilename)
     
 });
+app.get('/ficheros', function (req, res) {
+    const absFolder = path.join(__dirname, "storage");
+    fs.readdir(absFolder, (err, data)=>{
+            res.send(data);
+    })
+});
 app.get('/:time', async function (req, res) {
     res.append("X-CUSTOM", "AAA")
     res.append('Warning', '199 Miscellaneous warning');
