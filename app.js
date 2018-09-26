@@ -37,15 +37,6 @@ const multerConfig = {
       next()
     }
     next(null, true)
-    // const texto = file.mimetype.startsWith('text/html');
-    // if (texto) {
-    //     console.log('photo uploaded');
-    //     next(null, true);
-    // } else {
-    //     console.log("file not supported");
-    //     //TODO:  A better message response to user on failure.
-    //     return next();
-    // }
   },
 }
 app.use(cors())
@@ -107,7 +98,7 @@ app.get("/", function(req, res) {
     .pipe(
       switchMap(() =>
         range(1, 100).pipe(
-          delay(3),
+          delay(5000),
           take(20),
           filter(i => i % 3 === 0),
         ),
