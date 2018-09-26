@@ -65,12 +65,12 @@ app.get("/ficheros", function(req, res) {
     res.send(data)
   })
 })
-app.get("/:time", async function(req, res) {
+app.get("/delay/:time", async function(req, res) {
   res.append("X-CUSTOM", "AAA")
   res.append("Warning", "199 Miscellaneous warning")
   concat(
-    from(axios.get("http://localhost:3002/")),
-    from(axios.get("http://localhost:3002/")),
+    from(axios.get("http://localhost:3333/")),
+    from(axios.get("http://localhost:3333/")),
   )
     .pipe(
       delay(req.params.time),
